@@ -1,0 +1,133 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://src/themes/theme_game_screens.tres" type="Theme" id=1]
+[ext_resource path="res://src/ui/graphics/bear_with_apples_3.jpg" type="Texture" id=2]
+[ext_resource path="res://src/ui/graphics/bear_with_apples_1.jpg" type="Texture" id=3]
+[ext_resource path="res://src/ui/game_screens/game_story.gd" type="Script" id=4]
+[ext_resource path="res://src/ui/graphics/bear_with_apples_2.jpg" type="Texture" id=5]
+[ext_resource path="res://src/ui/graphics/background_garden.jpg" type="Texture" id=6]
+[ext_resource path="res://src/ui/graphics/keys/esc.png" type="Texture" id=7]
+[ext_resource path="res://src/themes/fonts/atma_medium.tres" type="DynamicFont" id=8]
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1092, 494 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "intro"
+length = 16.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -0.00191181, -0.00253929 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4, 8.5, 12 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1e-05, 1e-05 ), Vector2( 0.5, 0.5 ), Vector2( 0.8, 0.8 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 9.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1400, -744.976 ), Vector2( 1092, 494 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Label:max_lines_visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1, 2, 4.2, 7, 9.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 4, 7, 10, -1 ]
+}
+
+[node name="Story" type="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 1
+script = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 438.0
+margin_top = 30.0
+margin_right = 1018.0
+margin_bottom = 865.0
+rect_scale = Vector2( 0.8, 0.8 )
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "
+Der Bär war im Garten und hat ganz viele Äpfel gesammelt.
+
+Jetzt träumt er sogar Nachts davon!
+
+Versuche, alle Äpfel einzusammeln!
+
+Goldmünzen können auch hilfreich sein..."
+autowrap = true
+clip_text = true
+max_lines_visible = 0
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 131, 165.393 )
+scale = Vector2( -0.00191181, -0.00253929 )
+texture = ExtResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 210, 480 )
+scale = Vector2( 1e-05, 1e-05 )
+texture = ExtResource( 5 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( 1092, 494 )
+scale = Vector2( 0.514851, 0.481477 )
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 5 )
+anims/intro = SubResource( 4 )
+
+[node name="Escape" type="TouchScreenButton" parent="."]
+position = Vector2( 1160, 16 )
+normal = ExtResource( 7 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="pressed" from="Escape" to="." method="_on_Escape_pressed"]

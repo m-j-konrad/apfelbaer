@@ -1,0 +1,148 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://src/ui/hud/hud.gd" type="Script" id=1]
+[ext_resource path="res://src/items/graphics/apple_04.png" type="Texture" id=2]
+[ext_resource path="res://src/themes/theme_standart.tres" type="Theme" id=3]
+[ext_resource path="res://src/items/graphics/coin_1.png" type="Texture" id=4]
+[ext_resource path="res://src/ui/graphics/nine_patch_glass_green.png" type="Texture" id=5]
+[ext_resource path="res://src/ui/graphics/keys/arrow_right.png" type="Texture" id=6]
+[ext_resource path="res://src/ui/graphics/keys/arrow_down.png" type="Texture" id=7]
+[ext_resource path="res://src/ui/graphics/keys/arrow_left.png" type="Texture" id=8]
+[ext_resource path="res://src/ui/graphics/keys/arrow_up.png" type="Texture" id=9]
+[ext_resource path="res://src/ui/graphics/hearts.png" type="Texture" id=10]
+[ext_resource path="res://src/themes/fonts/atma_big.tres" type="DynamicFont" id=11]
+[ext_resource path="res://src/ui/graphics/keys/esc.png" type="Texture" id=12]
+
+[node name="Interface" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Lifes" type="NinePatchRect" parent="."]
+margin_left = -542.0
+margin_top = -157.0
+margin_right = 458.0
+margin_bottom = 103.0
+rect_min_size = Vector2( 20, 20 )
+rect_scale = Vector2( 0.3, 0.3 )
+rect_pivot_offset = Vector2( 1000, 260 )
+texture = ExtResource( 5 )
+region_rect = Rect2( -1.33551, -1.21843, 485.465, 324.814 )
+patch_margin_left = 28
+patch_margin_top = 123
+patch_margin_right = 29
+patch_margin_bottom = 64
+
+[node name="HeartContainer" type="Sprite" parent="Lifes"]
+position = Vector2( 496.667, 130 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 256, 128 )
+
+[node name="Score" type="NinePatchRect" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -1030.0
+margin_top = 20.0
+margin_right = -30.0
+margin_bottom = 280.0
+grow_horizontal = 0
+rect_min_size = Vector2( 20, 20 )
+rect_scale = Vector2( 0.3, 0.3 )
+rect_pivot_offset = Vector2( 1000, 0 )
+texture = ExtResource( 5 )
+region_rect = Rect2( -1.33551, -1.21843, 485.465, 324.814 )
+patch_margin_left = 28
+patch_margin_top = 123
+patch_margin_right = 29
+patch_margin_bottom = 64
+
+[node name="Apple" type="TextureRect" parent="Score"]
+margin_left = 69.9998
+margin_top = 60.0
+margin_right = 198.0
+margin_bottom = 207.0
+texture = ExtResource( 2 )
+
+[node name="Coin" type="TextureRect" parent="Score"]
+margin_left = 570.0
+margin_top = 73.3334
+margin_right = 690.0
+margin_bottom = 199.333
+texture = ExtResource( 4 )
+expand = true
+
+[node name="ScoreApples" type="Label" parent="Score"]
+margin_left = 216.667
+margin_top = 53.3333
+margin_right = 423.667
+margin_bottom = 218.333
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.0470588, 0.0470588, 0.0470588, 1 )
+custom_colors/font_outline_modulate = Color( 0.188235, 1, 0, 1 )
+custom_fonts/font = ExtResource( 11 )
+text = "333"
+
+[node name="ScoreCoins" type="Label" parent="Score"]
+margin_left = 716.667
+margin_top = 53.3333
+margin_right = 923.667
+margin_bottom = 218.333
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.0470588, 0.0470588, 0.0470588, 1 )
+custom_colors/font_outline_modulate = Color( 0.188235, 1, 0, 1 )
+custom_fonts/font = ExtResource( 11 )
+text = "333"
+
+[node name="TouchLeft" type="MarginContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -150.0
+margin_right = 450.0
+rect_pivot_offset = Vector2( 0, 150 )
+
+[node name="ButtonLeft" type="TouchScreenButton" parent="TouchLeft"]
+position = Vector2( 0, -30 )
+scale = Vector2( 1.7, 2 )
+normal = ExtResource( 8 )
+action = "left"
+visibility_mode = 1
+
+[node name="ButtonLeft2" type="TouchScreenButton" parent="TouchLeft"]
+position = Vector2( 169, -30 )
+scale = Vector2( 1.7, 2 )
+normal = ExtResource( 6 )
+action = "right"
+visibility_mode = 1
+
+[node name="TouchRight" type="MarginContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -380.0
+margin_top = -220.0
+margin_right = 20.0
+margin_bottom = -20.0
+rect_pivot_offset = Vector2( 150, 150 )
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="TouchRight"]
+visible = false
+position = Vector2( 50, 70 )
+scale = Vector2( 1, 1.3 )
+normal = ExtResource( 7 )
+action = "down"
+visibility_mode = 1
+
+[node name="ButtonUp" type="TouchScreenButton" parent="TouchRight"]
+position = Vector2( 170, 0 )
+scale = Vector2( 2.3, 2.4 )
+normal = ExtResource( 9 )
+action = "up"
+visibility_mode = 1
+
+[node name="Menu" type="TouchScreenButton" parent="."]
+scale = Vector2( 1.26, 1.3 )
+normal = ExtResource( 12 )
+action = "esc"
+visibility_mode = 1
