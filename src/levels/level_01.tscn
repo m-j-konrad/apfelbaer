@@ -1,0 +1,370 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://src/tile_sets/mossy_background.tres" type="TileSet" id=1]
+[ext_resource path="res://src/characters/bear.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/effects/darkness_complete.png" type="Texture" id=3]
+[ext_resource path="res://src/tile_sets/cave_background.tres" type="TileSet" id=4]
+[ext_resource path="res://src/tile_sets/mossy_ground.tres" type="TileSet" id=5]
+[ext_resource path="res://src/tile_sets/cave_ground.tres" type="TileSet" id=6]
+[ext_resource path="res://src/characters/wisent.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/themes/fonts/sign_font.tres" type="DynamicFont" id=8]
+[ext_resource path="res://src/characters/little_blob.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/game_areas/player_blocker.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/items/graphics/signs/sign_old_1.png" type="Texture" id=11]
+[ext_resource path="res://src/items/apple.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/items/coin.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/effects/Water.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/effects/darkness.png" type="Texture" id=16]
+[ext_resource path="res://src/effects/sky_blue.png" type="Texture" id=17]
+[ext_resource path="res://src/game_areas/falling_zone.tscn" type="PackedScene" id=18]
+[ext_resource path="res://src/levels/graphics/sunset.jpg" type="Texture" id=19]
+[ext_resource path="res://src/items/graphics/signs/fire_exit_down.png" type="Texture" id=20]
+[ext_resource path="res://src/items/graphics/signs/pole.png" type="Texture" id=21]
+[ext_resource path="res://src/items/heart.tscn" type="PackedScene" id=22]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 368.375, 40.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 25, 17.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 30.5, 15 )
+
+[node name="Level01" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 6838, -966.5 )
+scale = Vector2( 107.844, 4.72461 )
+z_index = -100
+texture = ExtResource( 17 )
+
+[node name="BACKGROUND_Cave" type="TileMap" parent="."]
+modulate = Color( 0.427451, 0.427451, 0.427451, 1 )
+tile_set = ExtResource( 4 )
+format = 1
+tile_data = PoolIntArray( -131039, 2, 0, 84, 0, 0, 262274, 3, 0, 327831, 1, 0, 327837, 4, 0, 458891, 4, 0, 721098, 1, 0, 786641, 2, 0 )
+
+[node name="BACKGROUND_Mossy" type="TileMap" parent="."]
+modulate = Color( 0.411765, 0.411765, 0.411765, 1 )
+scale = Vector2( 0.5, 0.5 )
+tile_set = ExtResource( 1 )
+format = 1
+tile_data = PoolIntArray( -524231, 6, 0, -524059, 6, 0, -393104, 5, 0, -393099, 6, 0, -327590, 8, 0, -261930, 8, 0, -196528, 5, 0, -131005, 4, 0, -65462, 7, 0, -65436, 7, 0, 204, 9, 0, 196727, 4, 0, 262273, 11, 0, 262286, 8, 0, 262319, 5, 0, 262324, 11, 0, 262339, 10, 0, 393391, 7, 0, 524609, 8, 0, 524644, 5, 0, 524658, 10, 0, 524667, 6, 0, 590122, 9, 0, 590131, 11, 0, 655684, 7, 0, 655716, 7, 0, 655745, 7, 0, 721194, 10, 0, 983434, 6, 0, 1114457, 16, 0, 1179975, 20, 0, 1179992, 4, 0, 1245467, 13, 0, 1245479, 13, 0, 1311006, 8, 0, 1376539, 7, 0, 1376550, 7, 0, 1376585, 12, 0, 1376610, 14, 0, 1442207, 8, 0, 1507660, 8, 0, 1507664, 19, 0, 1507669, 13, 0, 1507676, 8, 0, 1507729, 5, 0, 1573208, 13, 0, 1573272, 10, 0, 1638741, 7, 0 )
+
+[node name="Signs" type="Node" parent="."]
+
+[node name="Sign1" type="Node2D" parent="Signs"]
+z_index = -1
+
+[node name="Sprite" type="Sprite" parent="Signs/Sign1"]
+position = Vector2( 2472, -171 )
+texture = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="Signs/Sign1"]
+margin_left = 2290.0
+margin_top = -245.0
+margin_right = 2659.0
+margin_bottom = -41.0
+rect_rotation = 2.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "Nicht
+herunterfallen!"
+align = 1
+autowrap = true
+
+[node name="Sign2" type="Node2D" parent="Signs"]
+position = Vector2( 2003, 160 )
+z_index = -1
+
+[node name="Sprite" type="Sprite" parent="Signs/Sign2"]
+position = Vector2( 2472, -171 )
+texture = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="Signs/Sign2"]
+margin_left = 2280.0
+margin_top = -279.0
+margin_right = 2689.0
+margin_bottom = -72.0
+rect_rotation = 2.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "Das Wisent ist der beste Freund vom Bär!
+Er kann auf ihm reiten, was manchmal praktisch ist."
+autowrap = true
+
+[node name="Sign3" type="Node2D" parent="Signs"]
+position = Vector2( 2708, 143 )
+z_index = -1
+
+[node name="Sprite" type="Sprite" parent="Signs/Sign3"]
+position = Vector2( 2472, -171 )
+texture = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="Signs/Sign3"]
+margin_left = 2293.0
+margin_top = -264.0
+margin_right = 2668.0
+margin_bottom = -57.0
+rect_rotation = 2.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "Blobs beissen, aber eigentlich sind sie friedlich...
+Wenn man drauftritt geht's ihnen schlecht!"
+autowrap = true
+
+[node name="Sign4" type="Node2D" parent="Signs"]
+position = Vector2( 3725, 131 )
+z_index = -1
+
+[node name="Sprite" type="Sprite" parent="Signs/Sign4"]
+position = Vector2( 2472, -171 )
+texture = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="Signs/Sign4"]
+margin_left = 2316.0
+margin_top = -256.0
+margin_right = 2648.0
+margin_bottom = -49.0
+rect_rotation = 2.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "Äpfel sollte man möglichst immer einsammeln.
+Münzen bringen Extra-Punkte !"
+autowrap = true
+
+[node name="Sign5" type="Node2D" parent="Signs"]
+position = Vector2( 6263, 393 )
+z_index = -1
+
+[node name="Sprite" type="Sprite" parent="Signs/Sign5"]
+position = Vector2( 2472, -171 )
+texture = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="Signs/Sign5"]
+margin_left = 2354.0
+margin_top = -252.0
+margin_right = 2607.0
+margin_bottom = -58.0
+rect_rotation = 2.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "Achtung!
+Der Bär kann NICHT schwimmen!
+"
+autowrap = true
+
+[node name="Sign6" type="Node2D" parent="Signs"]
+position = Vector2( 7727, 362 )
+z_index = -1
+
+[node name="Sprite" type="Sprite" parent="Signs/Sign6"]
+position = Vector2( 2472, -171 )
+texture = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="Signs/Sign6"]
+margin_left = 2395.0
+margin_top = -236.0
+margin_right = 2587.0
+margin_bottom = -110.0
+rect_rotation = 2.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "...aber
+das Wisent
+schon!"
+autowrap = true
+
+[node name="Sign7" type="Node2D" parent="Signs"]
+position = Vector2( 9216, 298 )
+z_index = -1
+
+[node name="Sprite" type="Sprite" parent="Signs/Sign7"]
+position = Vector2( 2472, -171 )
+texture = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="Signs/Sign7"]
+margin_left = 2323.0
+margin_top = -215.0
+margin_right = 2639.0
+margin_bottom = -128.0
+rect_rotation = 2.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 8 )
+text = "Wenn der Bär sich weh getan hat helfen Herzen!"
+autowrap = true
+
+[node name="Bear" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1964, -62 )
+
+[node name="Wisent" parent="." instance=ExtResource( 7 )]
+position = Vector2( 4760, 195 )
+
+[node name="Wisent2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 10709, 352 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="Water" type="Node" parent="."]
+
+[node name="Water" parent="Water" instance=ExtResource( 15 )]
+position = Vector2( 9312, 633 )
+scale = Vector2( 1.1, 1.1 )
+z_index = -1
+
+[node name="Water2" parent="Water" instance=ExtResource( 15 )]
+position = Vector2( 10936, 559 )
+scale = Vector2( 2, 2 )
+z_index = -1
+
+[node name="GROUND_Cave" type="TileMap" parent="."]
+tile_set = ExtResource( 6 )
+collision_layer = 8
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -262120, 14, 0, -196496, 5, 0, -131017, 6, 0, -65493, 6, 0, -65429, 5, 0, 49, 6, 0, 119, 5, 0, 65638, 5, 0, 262202, 4, 0, 262208, 6, 0, 262212, 5, 0, 262215, 3, 0, 262224, 3, 0, 262233, 2, 0, 262238, 1, 0, 327806, 5, 0, 393349, 2, 0, 393365, 4, 0, 458881, 2, 0, 458896, 5, 0, 524425, 2, 0, 721037, 3, 0, 721045, 2, 0 )
+
+[node name="GROUND_Mossy" type="TileMap" parent="."]
+position = Vector2( 1812, -89 )
+scale = Vector2( 0.4, 0.4 )
+tile_set = ExtResource( 5 )
+show_collision = true
+collision_layer = 8
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 262132, 0, 0, 262136, 0, 1, 262140, 0, 1, 196608, 0, 1, 196612, 0, 1, 196616, 0, 1, 196620, 0, 1, 196624, 0, 1, 196628, 0, 1, 196632, 0, 1, 196636, 0, 2, 327753, 3, 0, 524276, 0, 65536, 458780, 0, 65538, 524455, 1, 0, 589924, 0, 0, 589928, 0, 2, 589950, 2, 0, 786420, 0, 65536, 720924, 0, 65538, 721292, 3, 0, 786503, 0, 196608, 786507, 0, 196609, 786511, 0, 196609, 786515, 0, 196609, 786519, 0, 196609, 786523, 0, 196609, 786527, 0, 196609, 786531, 0, 196609, 786535, 0, 196609, 786539, 0, 196609, 786543, 0, 196609, 786547, 0, 196609, 786551, 0, 196609, 786555, 0, 196609, 786559, 0, 196609, 786563, 0, 196609, 786567, 0, 196609, 786571, 0, 196609, 786575, 0, 196609, 786579, 0, 196609, 786583, 0, 196609, 786587, 0, 196609, 786591, 0, 196609, 786595, 0, 196609, 786599, 0, 196609, 786603, 0, 196609, 786607, 0, 196609, 786611, 0, 196610, 917885, 1, 0, 1048564, 0, 65536, 983068, 0, 65538, 983429, 2, 0, 1048978, 2, 0, 1114432, 0, 0, 1114436, 0, 1, 1114440, 0, 1, 1114444, 0, 1, 1114448, 0, 2, 1114486, 0, 0, 1114490, 0, 1, 1114521, 2, 0, 1180062, 3, 0, 1245212, 0, 65538, 1376576, 0, 65536, 1376592, 0, 65538, 1376630, 0, 65536, 1507356, 0, 65538, 1638720, 0, 65536, 1638736, 0, 65538, 1638774, 0, 65536, 1638819, 0, 65538, 1769500, 0, 65538, 1900864, 0, 65536, 1900880, 0, 65538, 1900918, 0, 65536, 1900963, 0, 65538, 1966450, 3, 0, 2031644, 0, 65538, 2032035, 1, 0, 2163008, 0, 65536, 2163024, 0, 65538, 2163025, 1, 0, 2293788, 0, 65538, 2294189, 0, 1, 2294193, 0, 1, 2294197, 0, 1, 2294201, 0, 1, 2294205, 0, 1, 2294209, 0, 1, 2294213, 0, 1, 2294217, 0, 1, 2294221, 0, 1, 2294225, 0, 2, 2359636, 0, 1, 2359640, 0, 1, 2359644, 0, 1, 2359648, 0, 1, 2359652, 0, 1, 2359656, 0, 1, 2359660, 0, 1, 2359664, 0, 1, 2425152, 0, 65536, 2556369, 0, 65538, 2687296, 0, 65536, 2818513, 0, 65538, 2949440, 0, 65536, 3080657, 0, 65538, 3211584, 0, 65536, 3211729, 0, 65538, 3473873, 0, 65538, 3736017, 0, 65538, 3998121, 0, 131073, 3998125, 0, 131073, 3998129, 0, 131073, 3998133, 0, 131073, 3998137, 0, 131073, 3998141, 0, 131073, 3998145, 0, 131073, 3998149, 0, 131073, 3998153, 0, 131073, 3998157, 0, 131073, 3998161, 0, 131074 )
+
+[node name="player_blocker" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1739, -218 )
+
+[node name="Sprites" type="Node" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Sprites"]
+position = Vector2( 2067, 253.5 )
+scale = Vector2( 7.3125, 2.61719 )
+texture = ExtResource( 3 )
+
+[node name="Darkness" type="Node" parent="."]
+
+[node name="DarknessComplete" type="Sprite" parent="Darkness"]
+position = Vector2( 13111, 1178 )
+scale = Vector2( 10.3125, 5.0625 )
+texture = ExtResource( 3 )
+
+[node name="Blobs" type="Node" parent="."]
+
+[node name="LittleBlob" parent="Blobs" instance=ExtResource( 9 )]
+position = Vector2( 5513, 151 )
+
+[node name="LittleBlob2" parent="Blobs" instance=ExtResource( 9 )]
+position = Vector2( 5890, 142 )
+
+[node name="Apples" type="Node" parent="."]
+
+[node name="Apple" parent="Apples" instance=ExtResource( 13 )]
+position = Vector2( 6625, 24 )
+
+[node name="Apple2" parent="Apples" instance=ExtResource( 13 )]
+position = Vector2( 6949, -93 )
+
+[node name="Apple3" parent="Apples" instance=ExtResource( 13 )]
+position = Vector2( 7274, -219 )
+
+[node name="Coins" type="Node" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource( 14 )]
+position = Vector2( 7721, -42 )
+
+[node name="Coin2" parent="Coins" instance=ExtResource( 14 )]
+position = Vector2( 7810, -96 )
+
+[node name="Coin3" parent="Coins" instance=ExtResource( 14 )]
+position = Vector2( 7921, -121 )
+
+[node name="Coin4" parent="Coins" instance=ExtResource( 14 )]
+position = Vector2( 8023, -84 )
+
+[node name="Coin5" parent="Coins" instance=ExtResource( 14 )]
+position = Vector2( 8110, -5 )
+
+[node name="Coin6" parent="Coins" instance=ExtResource( 14 )]
+position = Vector2( 8142, 131 )
+
+[node name="Coin7" parent="Coins" instance=ExtResource( 14 )]
+position = Vector2( 8167, 284 )
+
+[node name="Heart" parent="Coins" instance=ExtResource( 22 )]
+position = Vector2( 12060, 171 )
+
+[node name="Heart2" parent="Coins" instance=ExtResource( 22 )]
+position = Vector2( 12211, 301 )
+
+[node name="Heart3" parent="Coins" instance=ExtResource( 22 )]
+position = Vector2( 12402, 322 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 10455, 944.5 )
+scale = Vector2( 38.9531, 1.40039 )
+texture = ExtResource( 16 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( 14808, 2401 )
+scale = Vector2( 2, 2 )
+z_index = -101
+texture = ExtResource( 19 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( 14797, 1730 )
+rotation = 3.14159
+scale = Vector2( 35.4136, 2.17289 )
+z_index = -100
+texture = ExtResource( 16 )
+
+[node name="GameOverAreas" type="Node" parent="."]
+
+[node name="FallingZone" parent="GameOverAreas" instance=ExtResource( 18 )]
+position = Vector2( 2517, 262 )
+scale = Vector2( 4, 1 )
+next_level = "res://src/ui/game_screens/game_over.tscn"
+
+[node name="FallingZone2" parent="GameOverAreas" instance=ExtResource( 18 )]
+position = Vector2( 6987, 556 )
+scale = Vector2( 4, 1 )
+next_level = "res://src/ui/game_screens/game_over.tscn"
+
+[node name="FallingZone3" parent="GameOverAreas" instance=ExtResource( 18 )]
+position = Vector2( 10075, 994 )
+scale = Vector2( 4, 1 )
+next_level = "res://src/ui/game_screens/game_over.tscn"
+
+[node name="FallingZone4" parent="GameOverAreas" instance=ExtResource( 18 )]
+position = Vector2( 14041, 2466 )
+scale = Vector2( 3, 10 )
+next_level = "res://src/levels/level_old_01.tscn"
+
+[node name="Pole" type="Sprite" parent="."]
+position = Vector2( 13604, 755.5 )
+scale = Vector2( 1, 0.302734 )
+z_index = -50
+texture = ExtResource( 21 )
+
+[node name="FireExitDown" type="Sprite" parent="."]
+position = Vector2( 13611, 620 )
+z_index = -50
+texture = ExtResource( 20 )
+
+[node name="CollisionRepair" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionRepair"]
+position = Vector2( 11954.2, 412 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CollisionRepair"]
+position = Vector2( 12490, 436.5 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="CollisionRepair"]
+position = Vector2( 12771.5, 833 )
+shape = SubResource( 3 )

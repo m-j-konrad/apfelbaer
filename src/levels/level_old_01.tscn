@@ -1,0 +1,297 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://src/characters/bear.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/tile_sets/mossy_ground.tres" type="TileSet" id=2]
+[ext_resource path="res://src/tile_sets/mossy_background.tres" type="TileSet" id=3]
+[ext_resource path="res://src/tile_sets/mossy_pass_through.tres" type="TileSet" id=4]
+[ext_resource path="res://src/levels/graphics/sunset.jpg" type="Texture" id=5]
+[ext_resource path="res://src/items/graphics/signs/fire_exit_down.png" type="Texture" id=6]
+[ext_resource path="res://src/items/graphics/signs/sign_1.png" type="Texture" id=7]
+[ext_resource path="res://src/items/graphics/signs/pole.png" type="Texture" id=8]
+[ext_resource path="res://src/items/heart.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/characters/little_blob.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/game_areas/player_blocker.tscn" type="PackedScene" id=18]
+[ext_resource path="res://src/items/apple.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/items/coin.tscn" type="PackedScene" id=20]
+[ext_resource path="res://src/game_areas/falling_zone.tscn" type="PackedScene" id=21]
+[ext_resource path="res://src/effects/darkness.png" type="Texture" id=22]
+[ext_resource path="res://src/effects/darkness_complete.png" type="Texture" id=23]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 267, 24 )
+
+[node name="Level_01" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+follow_viewport_enable = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -84, 0 )
+motion_scale = Vector2( 0.1, 0.08 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color( 0.317647, 0.317647, 0.317647, 1 )
+scale = Vector2( 2.1, 2 )
+texture = ExtResource( 5 )
+
+[node name="background" type="TileMap" parent="."]
+modulate = Color( 0.647059, 0.647059, 0.647059, 1 )
+position = Vector2( -2432.8, 848 )
+scale = Vector2( 0.5, 0.5 )
+tile_set = ExtResource( 3 )
+collision_layer = 32
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -2228106, 13, 0, -2162573, 12, 0, -2097038, 17, 0, -1965955, 15, 0, -1900423, 16, 0, -1900417, 10, 0, -1900414, 11, 0, -1769356, 21, 0, -1769351, 0, 0, -1572744, 11, 0, -1507206, 20, 0, -1245146, 15, 0, -1179614, 21, 0, -1114073, 20, 0, -1113985, 10, 0, -1048537, 0, 0, -982919, 1, 0, -917388, 21, 0, -786309, 7, 0, -589729, 15, 0, -524225, 6, 0, -524195, 9, 0, -458638, 13, 0, -393179, 9, 0, -262092, 5, 0, -262065, 8, 0, -262022, 0, 0, -131023, 4, 0, -65422, 3, 0, 65639, 1, 0, 131161, 0, 0, 131181, 21, 0, 327770, 20, 0 )
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="blob_intelligent" parent="Enemies" instance=ExtResource( 17 )]
+position = Vector2( 1229.2, 652 )
+scale = Vector2( 2, 2.5 )
+detects_cliffs = true
+
+[node name="blob_intelligent2" parent="Enemies" instance=ExtResource( 17 )]
+position = Vector2( -194.799, 816 )
+scale = Vector2( 1.5, 2.5 )
+detects_cliffs = true
+
+[node name="blob_intelligent3" parent="Enemies" instance=ExtResource( 17 )]
+position = Vector2( 431.201, 782 )
+scale = Vector2( 1.5, 2 )
+detects_cliffs = true
+
+[node name="Sprites" type="Node" parent="."]
+
+[node name="Sprite2" type="Sprite" parent="Sprites"]
+position = Vector2( 133.201, 744 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="Sprites"]
+position = Vector2( 134.201, 648 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 6 )
+
+[node name="Sprite3" type="Sprite" parent="Sprites"]
+position = Vector2( -476.799, 587 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 7 )
+
+[node name="Bear" parent="." instance=ExtResource( 1 )]
+position = Vector2( -898.999, 356 )
+
+[node name="Platforms" type="TileMap" parent="."]
+position = Vector2( -2432.8, 848 )
+scale = Vector2( 0.5, 0.5 )
+tile_set = ExtResource( 4 )
+collision_layer = 8
+format = 1
+tile_data = PoolIntArray( -1572772, 0, 0, -1376141, 2, 0, -1048455, 2, 0, -720778, 2, 0 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Platforms"]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/StaticBody2D"]
+position = Vector2( 7860, -636 )
+shape = SubResource( 1 )
+one_way_collision = true
+one_way_collision_margin = 5.0
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Platforms/StaticBody2D"]
+position = Vector2( 6707.6, -1470 )
+shape = SubResource( 1 )
+one_way_collision = true
+one_way_collision_margin = 5.0
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Platforms/StaticBody2D"]
+position = Vector2( 6187.6, -1470 )
+shape = SubResource( 1 )
+one_way_collision = true
+one_way_collision_margin = 5.0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Platforms/StaticBody2D"]
+position = Vector2( 8058, -958 )
+shape = SubResource( 1 )
+one_way_collision = true
+one_way_collision_margin = 5.0
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Platforms/StaticBody2D"]
+position = Vector2( 7684.6, -1284 )
+shape = SubResource( 1 )
+one_way_collision = true
+one_way_collision_margin = 5.0
+
+[node name="Ground" type="TileMap" parent="."]
+position = Vector2( -2432.8, 848 )
+scale = Vector2( 0.7, 0.7 )
+z_index = 2
+tile_set = ExtResource( 2 )
+show_collision = true
+collision_layer = 8
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -1310668, 0, 196611, -1179593, 0, 196608, -1179589, 0, 196609, -1179585, 0, 196610, -458727, 3, 0, -327615, 1, 0, -327594, 0, 196611, -262104, 2, 0, -196528, 0, 196611, -65512, 0, 0, -65508, 0, 1, -65504, 0, 1, -65500, 0, 1, -65496, 0, 1, -65492, 0, 1, -65488, 0, 2, -65481, 0, 3, -65476, 0, 196608, -65472, 0, 196609, -65468, 0, 196609, -65464, 0, 196609, -65460, 0, 196610, 196632, 0, 65536, 196636, 0, 65537, 196640, 0, 65537, 196644, 0, 65537, 196648, 0, 65537, 196652, 0, 393217, 196656, 0, 65538, 196663, 0, 65539, 458796, 0, 65537, 458800, 0, 65538, 458807, 0, 65539, 720940, 0, 65537, 720944, 0, 65538, 720951, 0, 65539 )
+
+[node name="Apples" type="Node" parent="."]
+
+[node name="item_apple" parent="Apples" instance=ExtResource( 19 )]
+position = Vector2( -535.799, 658 )
+
+[node name="item_apple3" parent="Apples" instance=ExtResource( 19 )]
+position = Vector2( -353.799, 663 )
+
+[node name="item_apple5" parent="Apples" instance=ExtResource( 19 )]
+position = Vector2( 656.201, 612 )
+
+[node name="item_apple6" parent="Apples" instance=ExtResource( 19 )]
+position = Vector2( -672.799, 775 )
+
+[node name="item_apple7" parent="Apples" instance=ExtResource( 19 )]
+position = Vector2( 1290, 37 )
+
+[node name="item_apple8" parent="Apples" instance=ExtResource( 19 )]
+position = Vector2( 1552, 54 )
+
+[node name="item_apple12" parent="Apples" instance=ExtResource( 19 )]
+position = Vector2( 1404, 42 )
+
+[node name="item_apple9" parent="Apples" instance=ExtResource( 19 )]
+position = Vector2( 1797, 57 )
+
+[node name="item_apple10" parent="Apples" instance=ExtResource( 19 )]
+position = Vector2( 1601, 216 )
+
+[node name="Coins" type="Node" parent="."]
+
+[node name="Coin22" parent="Coins" instance=ExtResource( 20 )]
+position = Vector2( -38.9988, 859 )
+collision_layer = 8
+collision_mask = 3
+
+[node name="Coin23" parent="Coins" instance=ExtResource( 20 )]
+position = Vector2( -38.9988, 923 )
+collision_layer = 8
+collision_mask = 3
+
+[node name="Coin24" parent="Coins" instance=ExtResource( 20 )]
+position = Vector2( -38.9988, 991 )
+collision_layer = 8
+collision_mask = 3
+
+[node name="Coin25" parent="Coins" instance=ExtResource( 20 )]
+position = Vector2( -38.9988, 1060 )
+collision_layer = 8
+collision_mask = 3
+
+[node name="Coin2" parent="Coins" instance=ExtResource( 20 )]
+position = Vector2( 1518.2, 444 )
+collision_layer = 8
+collision_mask = 3
+
+[node name="Coin3" parent="Coins" instance=ExtResource( 20 )]
+position = Vector2( 1336.2, 138 )
+collision_layer = 8
+collision_mask = 3
+
+[node name="Coin10" parent="Coins" instance=ExtResource( 20 )]
+position = Vector2( 279.201, 19 )
+collision_layer = 8
+collision_mask = 3
+
+[node name="Coin11" parent="Coins" instance=ExtResource( 20 )]
+position = Vector2( 319.201, 20 )
+collision_layer = 8
+collision_mask = 3
+
+[node name="Coin12" parent="Coins" instance=ExtResource( 20 )]
+position = Vector2( 355.201, 20 )
+collision_layer = 8
+collision_mask = 3
+
+[node name="Coin13" parent="Coins" instance=ExtResource( 20 )]
+position = Vector2( 338.201, -17 )
+collision_layer = 8
+collision_mask = 3
+
+[node name="Coin14" parent="Coins" instance=ExtResource( 20 )]
+position = Vector2( 299.201, -20 )
+collision_layer = 8
+collision_mask = 3
+
+[node name="Coin15" parent="Coins" instance=ExtResource( 20 )]
+position = Vector2( 323.201, -59 )
+collision_layer = 8
+collision_mask = 3
+
+[node name="Coin16" parent="Coins" instance=ExtResource( 20 )]
+position = Vector2( 775.201, 42 )
+collision_layer = 8
+collision_mask = 3
+
+[node name="Coin17" parent="Coins" instance=ExtResource( 20 )]
+position = Vector2( 815.201, 43 )
+collision_layer = 8
+collision_mask = 3
+
+[node name="Coin18" parent="Coins" instance=ExtResource( 20 )]
+position = Vector2( 851.201, 43 )
+collision_layer = 8
+collision_mask = 3
+
+[node name="Coin19" parent="Coins" instance=ExtResource( 20 )]
+position = Vector2( 834.201, 6 )
+collision_layer = 8
+collision_mask = 3
+
+[node name="Coin20" parent="Coins" instance=ExtResource( 20 )]
+position = Vector2( 795.201, 3 )
+collision_layer = 8
+collision_mask = 3
+
+[node name="Coin21" parent="Coins" instance=ExtResource( 20 )]
+position = Vector2( 819.201, -36 )
+collision_layer = 8
+collision_mask = 3
+
+[node name="FallingZones" type="Node" parent="."]
+
+[node name="falling_zone" parent="FallingZones" instance=ExtResource( 21 )]
+position = Vector2( 84.2012, 1197 )
+next_level = "res://src/levels/level_old_01_underground.tscn"
+
+[node name="falling_zone2" parent="FallingZones" instance=ExtResource( 21 )]
+position = Vector2( 1221.2, 1211 )
+next_level = "res://src/levels/level_old_01_underground.tscn"
+
+[node name="falling_zone3" parent="FallingZones" instance=ExtResource( 21 )]
+position = Vector2( 1813.2, 1211 )
+next_level = "res://src/levels/level_old_01_underground.tscn"
+
+[node name="darkness" type="Sprite" parent="."]
+position = Vector2( 469.602, 1337.5 )
+scale = Vector2( 27.975, 3.00783 )
+texture = ExtResource( 23 )
+
+[node name="darkness_fade" type="Sprite" parent="."]
+position = Vector2( 465.101, 1001 )
+scale = Vector2( 27.9047, 0.585938 )
+texture = ExtResource( 22 )
+
+[node name="PlayerBlocker" type="Node" parent="."]
+
+[node name="PlayerBlocker" parent="PlayerBlocker" instance=ExtResource( 18 )]
+position = Vector2( -1114.8, 601 )
+
+[node name="PlayerBlocker2" parent="PlayerBlocker" instance=ExtResource( 18 )]
+position = Vector2( 2014.2, 1321 )
+scale = Vector2( 1, 4.76 )
+
+[node name="Heart" parent="." instance=ExtResource( 9 )]
+position = Vector2( -48, -79 )
+
+[node name="Heart2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 24, -79 )
+
+[node name="Heart3" parent="." instance=ExtResource( 9 )]
+position = Vector2( -14, -118 )

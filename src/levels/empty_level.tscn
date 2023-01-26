@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/tile_sets/mossy_background.tres" type="TileSet" id=1]
+[ext_resource path="res://src/characters/bear.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/tile_sets/cave_background.tres" type="TileSet" id=3]
+[ext_resource path="res://src/tile_sets/mossy_ground.tres" type="TileSet" id=5]
+[ext_resource path="res://src/tile_sets/cave_ground.tres" type="TileSet" id=6]
+
+[node name="EmptyLevel" type="Node2D"]
+
+[node name="BACKGROUND_Cave" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+format = 1
+
+[node name="BACKGROUND_Mossy" type="TileMap" parent="."]
+scale = Vector2( 0.5, 0.5 )
+tile_set = ExtResource( 1 )
+format = 1
+
+[node name="Bear" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1812, -89 )
+
+[node name="Sprites" type="Node" parent="."]
+
+[node name="Darkness" type="Node" parent="."]
+
+[node name="Apples" type="Node" parent="."]
+
+[node name="Coins" type="Node" parent="."]
+
+[node name="Blobs" type="Node" parent="."]
+
+[node name="GROUND_Cave" type="TileMap" parent="."]
+tile_set = ExtResource( 6 )
+format = 1
+
+[node name="GROUND_Mossy" type="TileMap" parent="."]
+position = Vector2( 1812, -89 )
+scale = Vector2( 0.4, 0.4 )
+tile_set = ExtResource( 5 )
+format = 1

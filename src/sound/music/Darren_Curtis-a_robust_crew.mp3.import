@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Darren_Curtis-a_robust_crew.mp3-b131fc8fd7dd4ec0b385910191fd0781.mp3str"
+
+[deps]
+
+source_file="res://src/sound/music/Darren_Curtis-a_robust_crew.mp3"
+dest_files=[ "res://.import/Darren_Curtis-a_robust_crew.mp3-b131fc8fd7dd4ec0b385910191fd0781.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

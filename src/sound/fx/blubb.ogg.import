@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/blubb.ogg-11d5d8e8411391ba7389c25c401054cf.oggstr"
+
+[deps]
+
+source_file="res://src/sound/fx/blubb.ogg"
+dest_files=[ "res://.import/blubb.ogg-11d5d8e8411391ba7389c25c401054cf.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
