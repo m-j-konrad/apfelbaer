@@ -1,0 +1,93 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://src/characters/little_blob.gd" type="Script" id=1]
+[ext_resource path="res://src/characters/graphics/little_blob/little_blob_sliding_1.png" type="Texture" id=2]
+[ext_resource path="res://src/sound/fx/slime.ogg" type="AudioStream" id=3]
+[ext_resource path="res://src/characters/graphics/little_blob/little_blob_squashed.png" type="Texture" id=4]
+[ext_resource path="res://src/characters/graphics/little_blob/little_blob_sliding_2.png" type="Texture" id=5]
+[ext_resource path="res://src/sound/fx/muddy_sound.ogg" type="AudioStream" id=6]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Crawl",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Squash",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 20, 8.33333 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 19, 3.41667 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 4.625, 9.73958 )
+
+[node name="LittleBlob" type="KinematicBody2D"]
+scale = Vector2( 1.5, 1.5 )
+collision_layer = 2
+collision_mask = 8
+script = ExtResource( 1 )
+detects_cliffs = false
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 2
+frames = SubResource( 5 )
+animation = "Crawl"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 6.33333 )
+shape = SubResource( 2 )
+
+[node name="FloorChecker" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 20 )
+collision_mask = 8
+
+[node name="TopChecker" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopChecker"]
+position = Vector2( 1, -7.91667 )
+shape = SubResource( 3 )
+
+[node name="SidesChecker" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SidesChecker"]
+position = Vector2( -22.75, 5.35417 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SidesChecker"]
+position = Vector2( 23.375, 6.40625 )
+shape = SubResource( 4 )
+
+[node name="sound_move" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = 3.5
+pitch_scale = 1.3
+max_distance = 700.0
+attenuation = 3.03144
+
+[node name="sound_squash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = 0.8
+pitch_scale = 1.3
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( -1.33334, -49.6667 )
+scale = Vector2( 11.2, 6.63333 )
+physics_process_parent = true
+
+[connection signal="body_entered" from="TopChecker" to="." method="_on_TopChecker_body_entered"]
+[connection signal="body_entered" from="SidesChecker" to="." method="_on_SidesChecker_body_entered"]
+[connection signal="finished" from="sound_squash" to="." method="_on_sound_squash_finished"]

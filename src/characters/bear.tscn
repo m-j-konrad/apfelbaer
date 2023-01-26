@@ -1,0 +1,140 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://src/characters/bear.gd" type="Script" id=1]
+[ext_resource path="res://src/characters/graphics/bear/bear_walk_up_1_.png" type="Texture" id=2]
+[ext_resource path="res://src/characters/graphics/bear/bear_walk_right_3_.png" type="Texture" id=3]
+[ext_resource path="res://src/characters/graphics/bear/bear_walk_down_3_.png" type="Texture" id=4]
+[ext_resource path="res://src/characters/graphics/bear/bear_walk_down_diagonal_3_.png" type="Texture" id=5]
+[ext_resource path="res://src/characters/graphics/bear/bear_walk_right_2_.png" type="Texture" id=6]
+[ext_resource path="res://src/characters/graphics/bear/bear_walk_up_3_.png" type="Texture" id=7]
+[ext_resource path="res://src/characters/graphics/bear/bear_walk_down_diagonal_2_.png" type="Texture" id=8]
+[ext_resource path="res://src/characters/graphics/bear/bear_walk_right_1_.png" type="Texture" id=9]
+[ext_resource path="res://src/characters/graphics/bear/bear_sit.png" type="Texture" id=10]
+[ext_resource path="res://src/sound/fx/game_over.ogg" type="AudioStream" id=11]
+[ext_resource path="res://src/sound/fx/jump.ogg" type="AudioStream" id=12]
+[ext_resource path="res://src/ui/menus/main_menu.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/ui/hud/hud.tscn" type="PackedScene" id=14]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "climb",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": false,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "look_around",
+"speed": 0.8
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": false,
+"name": "look_at_camera",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "sit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 36.5, 114.5 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "wake_up"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 2, 2 ), Vector2( 0.01, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -360.0, 332.8 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "sit", "sit" ]
+}
+
+[node name="Bear" type="KinematicBody2D"]
+scale = Vector2( 0.4, 0.4 )
+collision_mask = 30
+collision/safe_margin = 2.35
+script = ExtResource( 1 )
+
+[node name="Screen" type="CanvasLayer" parent="."]
+
+[node name="Interface" parent="Screen" instance=ExtResource( 14 )]
+
+[node name="MainMenu" parent="Screen" instance=ExtResource( 13 )]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+rotation = -6.28319
+frames = SubResource( 2 )
+animation = "sit"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -2.5, 7.5 )
+shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 195, -50 )
+scale = Vector2( 2.5, 2.5 )
+current = true
+smoothing_enabled = true
+smoothing_speed = 8.0
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 12 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/wake_up = SubResource( 3 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
