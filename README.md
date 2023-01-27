@@ -7,7 +7,7 @@ If you want to know the whole story of the little bear, you may [read his blog](
 
 # Play it on the web or download
 
-I put HTML5 version for instant play [here](https://applebear.mjksoftware.de).  
+I put HTML5 version for instant play [here](https://games.mjksoftware.de/applebear).  
 You may also [download compiled versions](https://github.com/m-j-konrad/apfelbaer/releases/tag/alpha) for
 
 - Microsoft Windows
