@@ -27,6 +27,12 @@ Full license test can be found [here](https://godotengine.org/license)
 Source available at [github](https://github.com/godotengine/godot)  
 Thanks for the fantastic [docs](https://docs.godotengine.org/en/stable/)!
 
+### Tilesets
+
+Assets by Maaot
+Found on [itch.io](https://maaot.itch.io/)
+Twitter: [R_Maaot](https://twitter.com/R_Maaot)
+
 ### weather
 
 Copyright (c) 2021 Diego Villalon  
