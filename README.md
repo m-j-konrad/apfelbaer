@@ -7,7 +7,7 @@ If you want to know the whole story of the little bear, you may [read his blog](
 
 # Play it on the web or download
 
-I put HTML5 version for instant play [here](https://games.mjksoftware.de/applebear).  
+I put the HTML5 version for instant play [here](https://games.mjksoftware.de/applebear).  
 You may also [download compiled versions](https://github.com/m-j-konrad/apfelbaer/releases/tag/alpha) for
 
 - Microsoft Windows
@@ -23,7 +23,7 @@ Many thanks are going out to coders who provide things I am allowed to use in my
 Copyright (c) 2007-2022 Juan Linietsky, Ariel Manzur.  
 Copyright (c) 2014-2022 Godot Engine contributors.  
 MIT-License  
-Full license test can be found [here](https://godotengine.org/license)  
+Full license text can be found [here](https://godotengine.org/license)  
 Source available at [github](https://github.com/godotengine/godot)  
 Thanks for the fantastic [docs](https://docs.godotengine.org/en/stable/)!
 
