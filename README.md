@@ -8,7 +8,7 @@ If you want to know the whole story of the little bear, you may [read his blog](
 # Play it on the web or download
 
 I put HTML5 version for instant play [here](https://dreamingbear.mjksoftware.de).  
-You may also [download compiled versions](https://dreamingbear.mjksoftware.de/download) for
+You may also [download compiled versions](https://github.com/m-j-konrad/apfelbaer/releases/tag/alpha) for
 
 - Microsoft Windows
 - Linux
